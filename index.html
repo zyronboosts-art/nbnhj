@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servitix Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        :root {
+            --primary-color: #3b82f6;
+            --primary-color-dark: #2563eb;
+            --background-start: #0f172a;
+            --background-end: #1e293b;
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --border-color: rgba(59, 130, 246, 0.2);
+            --border-color-hover: rgba(59, 130, 246, 0.5);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            animation: gradientAnimation 20s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.85);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 15px 60px;
+            background: rgba(15, 23, 42, 0.95);
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--text-primary);
+        }
+        nav {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        nav a:hover {
+            color: var(--primary-color);
+        }
+        .contact-btn {
+            background: var(--primary-color);
+            padding: 12px 28px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .contact-btn:hover {
+            background: var(--primary-color-dark);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+        section {
+            min-height: 100vh;
+            padding: 140px 60px 80px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #home {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+        .content-left {
+            flex: 1;
+            max-width: 580px;
+        }
+        h1 {
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 28px;
+        }
+        .highlight {
+            color: var(--primary-color);
+        }
+        .description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+        .cta-buttons {
+            display: flex;
+            gap: 18px;
+        }
+        .cta-button {
+            background: var(--primary-color);
+            padding: 16px 36px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .cta-button:hover {
+            background: var(--primary-color-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        .cta-button-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .cta-button-secondary:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+        .object-3d-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            perspective: 1000px;
+        }
+        .sphere-wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            transition: transform 0.1s linear;
+        }
+        .sphere {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate3D 30s linear infinite;
+        }
+        @keyframes rotate3D {
+            from { transform: rotateY(0deg) rotateX(0deg); }
+            to { transform: rotateY(360deg) rotateX(360deg); }
+        }
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid;
+            opacity: 0.5;
+            transform-style: preserve-3d;
+        }
+        .ring1 {
+            width: 350px; height: 350px; top: 25px; left: 25px;
+            border-color: var(--primary-color);
+            animation: rotate3D 20s linear infinite reverse;
+        }
+        .ring2 {
+            width: 280px; height: 280px; top: 60px; left: 60px;
+            border-color: #60a5fa;
+            transform: rotateX(60deg);
+            animation: rotate3D 25s linear infinite;
+        }
+        .ring3 {
+            width: 210px; height: 210px; top: 95px; left: 95px;
+            border-color: #93c5fd;
+            transform: rotateX(-60deg);
+            animation: rotate3D 15s linear infinite reverse;
+        }
+        .core {
+            position: absolute; width: 180px; height: 180px; top: 110px; left: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #3b82f6, #1e3a8a);
+            box-shadow: 0 0 60px rgba(59, 130, 246, 0.6);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 60px rgba(59, 130, 246, 0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 80px rgba(59, 130, 246, 0.8); }
+        }
+        .glow {
+            position: absolute; width: 400px; height: 400px; top: 0; left: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
+            filter: blur(50px);
+        }
+        #about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            max-width: 1300px;
+            width: 100%;
+        }
+        .about-left {
+            flex: 1;
+            max-width: 500px;
+        }
+        .about-left h2, .services-header h2, .contact-header h2, .partner-content h2 {
+            font-size: 44px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .about-left p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-size: 17px;
+        }
+        .about-center {
+            flex-shrink: 0;
+        }
+        .about-right {
+            flex: 1;
+        }
+        .key-points {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .key-point {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        .key-point:hover {
+            border-color: var(--border-color-hover);
+            background: rgba(30, 41, 59, 0.8);
+            transform: scale(1.03);
+        }
+        .key-point h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .key-point p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        #services {
+            background: rgba(15, 23, 42, 0.4);
+        }
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 38px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-color-hover);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+        .service-icon {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .service-icon svg {
+            width: 44px;
+            height: 44px;
+        }
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 14px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .service-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 22px;
+            font-size: 15px;
+        }
+        .book-btn {
+            background: var(--primary-color);
+            padding: 12px 26px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .book-btn:hover {
+            background: var(--primary-color-dark);
+        }
+        #contact {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+        .contact-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 42px;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .submit-btn:hover {
+            background: var(--primary-color-dark);
+        }
+        #partner {
+            text-align: center;
+        }
+        .partner-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .partner-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            margin: 50px 0;
+        }
+        .benefit-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-color-hover);
+        }
+        .benefit-icon {
+            font-size: 38px;
+            margin-bottom: 16px;
+        }
+        .benefit-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        footer {
+            background: #0f172a;
+            border-top: 1px solid var(--border-color);
+            padding: 45px 60px;
+            margin-top: 100px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-disclaimer {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            padding: 22px;
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 10px;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 22px;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        .copyright {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            border: 2px solid var(--border-color-hover);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 580px;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .modal.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+        }
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+        .modal-content h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .modal-content p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+            font-size: 16px;
+        }
+        @media (max-width: 1024px) {
+            #home { flex-direction: column-reverse; text-align: center; }
+            .about-content-wrapper { flex-direction: column; }
+            .cta-buttons { justify-content: center; }
+            header { padding: 20px 30px; }
+            header.scrolled { padding: 15px 30px; }
+            section { padding: 100px 30px 60px; }
+            h1 { font-size: 40px; }
+            nav { display: none; /* Simple hiding for mobile, can be replaced with a burger menu */ }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo"><a href="#home" style="color: inherit; text-decoration: none;">SERVITIX SOLUTIONS</a></div>
+        <nav>
+            <a onclick="scrollToSection('home')">Home</a>
+            <a onclick="scrollToSection('about')">About</a>
+            <a onclick="scrollToSection('services')">Services</a>
+            <a onclick="scrollToSection('contact')">Contact</a>
+            <a onclick="scrollToSection('partner')">Partner With Us</a>
+        </nav>
+    </header>
+
+    <section id="home">
+        <div class="content-left">
+            <h1>Connecting You with <span class="highlight">Trusted Cleaning and Auto Service Experts</span> Across the USA</h1>
+            <p class="description">
+                At Servitix Solutions, we help customers find verified, high quality Duct Cleaning, Car Wash, and Chimney Cleaning professionals. All in one place.
+            </p>
+            <div class="cta-buttons">
+                <button class="cta-button" onclick="scrollToSection('services')">Book a Service</button>
+                <button class="cta-button cta-button-secondary" onclick="scrollToSection('partner')">Partner With Us</button>
+            </div>
+        </div>
+        <div class="object-3d-container">
+            <div class="sphere-wrapper" id="sphere-wrapper">
+                <div class="glow"></div>
+                <div class="sphere">
+                    <div class="ring ring1"></div>
+                    <div class="ring ring2"></div>
+                    <div class="ring ring3"></div>
+                    <div class="core"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="about-content-wrapper">
+            <div class="about-left">
+                <h2>About <span class="highlight">Servitix Solutions</span></h2>
+                <p>Servitix Solutions is a client outreach and service coordination company. We collaborate with licensed and trusted cleaning and maintenance providers across the USA to ensure customers get reliable and affordable service without hassle.</p>
+                <p>Our mission is to simplify home and auto service bookings.</p>
+            </div>
+            <div class="about-center">
+                <div class="sphere-wrapper" style="width: 280px; height: 280px;">
+                    <div class="glow"></div>
+                    <div class="sphere">
+                        <div class="ring ring1" style="width: 240px; height: 240px; top: 20px; left: 20px;"></div>
+                        <div class="ring ring2" style="width: 190px; height: 190px; top: 45px; left: 45px;"></div>
+                        <div class="ring ring3" style="width: 140px; height: 140px; top: 70px; left: 70px;"></div>
+                        <div class="core" style="width: 120px; height: 120px; top: 80px; left: 80px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="key-points">
+                    <div class="key-point"><h4>Verified Professionals</h4><p>We connect clients with verified professionals.</p></div>
+                    <div class="key-point"><h4>Transparency and Reliability</h4><p>We ensure transparency, reliability, and smooth coordination between service providers and customers.</p></div>
+                    <div class="key-point"><h4>Simplified Booking</h4><p>Easy, hassle free service booking process.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="services-header">
+            <h2>Our <span class="highlight">Services</span></h2>
+            <p class="description">Professional services matched with trusted local experts near you</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" onclick="openModal('duct')">
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" /></svg></div>
+                <h3>Duct Cleaning Services</h3>
+                <p>Professional air duct cleaning to improve your home air quality. Fast, reliable, and affordable services from trusted local experts.</p>
+                <button class="book-btn">Request Quote</button>
+            </div>
+            <div class="service-card" onclick="openModal('carwash')">
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 003.375-3.375h1.5a1.125 1.125 0 011.125 1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375m17.25 4.5v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 00-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125h1.5m-17.25-4.5h9.75v-4.5a3.375 3.375 0 00-3.375-3.375H3.375c-1.86 0-3.375 1.515-3.375 3.375v4.5z" /></svg></div>
+                <h3>Car Wash and Detailing</h3>
+                <p>Premium car wash and detailing services. Keep your vehicle looking brand new with our verified auto care professionals.</p>
+                <button class="book-btn">Request Quote</button>
+            </div>
+            <div class="service-card" onclick="openModal('chimney')">
+                <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg></div>
+                <h3>Chimney Cleaning</h3>
+                <p>Expert chimney cleaning and maintenance services. Ensure safety and efficiency with our certified chimney specialists.</p>
+                <button class="book-btn">Request Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-header">
+            <h2>Contact <span class="highlight">Us</span></h2>
+            <p class="description">Get in touch for a free quote</p>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-group"><label>Full Name</label><input type="text" required placeholder="John Doe"></div>
+            <div class="form-group"><label>Email Address</label><input type="email" required placeholder="john@example.com"></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" required placeholder="+1 (555) 123-4567"></div>
+            <div class="form-group"><label for="service-select">Select Service</label><select id="service-select" required><option value="">Choose a service</option><option value="duct">Duct Cleaning</option><option value="carwash">Car Wash and Detailing</option><option value="chimney">Chimney Cleaning</option></select></div>
+            <div class="form-group"><label>City and State</label><input type="text" required placeholder="Los Angeles, CA"></div>
+            <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your service needs"></textarea></div>
+            <button type="submit" class="submit-btn">Submit Inquiry</button>
+        </form>
+    </section>
+
+    <section id="partner">
+        <div class="partner-content">
+            <h2>Grow Your Business with <span class="highlight">Servitix Solutions</span></h2>
+            <p class="description">We partner with cleaning and auto service providers to bring verified leads and steady business. You only pay for confirmed results.</p>
+            <div class="partner-benefits">
+                <div class="benefit-card"><div class="benefit-icon">📈</div><h4>Verified Leads</h4><p>Get high quality customer leads</p></div>
+                <div class="benefit-card"><div class="benefit-icon">💼</div><h4>Steady Business</h4><p>Consistent flow of customers</p></div>
+                <div class="benefit-card"><div class="benefit-icon">🤝</div><h4>Fair Partnership</h4><p>Pay only for confirmed results</p></div>
+            </div>
+            <button class="cta-button" onclick="scrollToSection('contact')">Apply to Partner</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-disclaimer">Legal Disclaimer: Servitix Solutions is a service coordination and client outreach platform. All services are performed by independent, verified partner companies. We act as a connection point between customers and service providers.</div>
+            <div class="footer-links"><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a><a href="#partner">Partners</a></div>
+            <div class="copyright">2025 Servitix Solutions. All rights reserved. info@servitixsolutions.com</div>
+        </div>
+    </footer>
+
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Service Title</h2>
+            <p id="modalDescription">Service description goes here</p>
+            <button class="cta-button" onclick="closeModal(); scrollToSection('contact')">Request Quote Now</button>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- On-Scroll Animations ---
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        // --- Dynamic Header ---
+        const header = document.getElementById('header');
+        window.onscroll = function() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        };
+
+        // --- Interactive 3D Sphere ---
+        const sphereWrapper = document.getElementById('sphere-wrapper');
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+            const x = (clientX / innerWidth - 0.5) * 40; // rotateY
+            const y = (clientY / innerHeight - 0.5) * -40; // rotateX
+            sphereWrapper.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+        });
+
+        // --- Modal Logic ---
+        const serviceContent = {
+            duct: { title: 'Professional Duct Cleaning', description: 'Improve your indoor air quality with our professional duct cleaning services. Our verified partners use advanced equipment to remove dust, allergens, and contaminants from your HVAC system. Experience cleaner air and better energy efficiency. We match you with licensed, insured professionals in your area who provide transparent pricing and guaranteed satisfaction.' },
+            carwash: { title: 'Car Wash and Detailing', description: 'Keep your vehicle in pristine condition with our premium car wash and detailing services. From basic exterior wash to complete interior and exterior detailing, our trusted partners deliver exceptional results. Services include hand washing, waxing, interior vacuuming, leather conditioning, and paint protection. Get professional care for your vehicle at competitive prices.' },
+            chimney: { title: 'Chimney Cleaning', description: 'Ensure your chimney is safe and efficient with professional cleaning services. Our certified partners remove dangerous creosote buildup, inspect for damage, and ensure proper ventilation. Regular chimney maintenance prevents fire hazards and improves heating efficiency. Trust our experienced professionals to keep your home safe and your fireplace working properly.' }
+        };
+        function openModal(service) {
+            const modal = document.getElementById('serviceModal');
+            const content = serviceContent[service];
+            document.getElementById('modalTitle').textContent = content.title;
+            document.getElementById('modalDescription').textContent = content.description;
+            modal.classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('serviceModal').classList.remove('active');
+        }
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('serviceModal')) closeModal();
+        }
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeModal();
+        });
+
+        // --- Form Submission ---
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Show confirmation alert
+            alert('Thank you for your inquiry. We will contact you shortly.');
+            
+            // Get form values
+            const form = event.target;
+            const fullName = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+            const phone = form.querySelector('input[type="tel"]').value;
+            const service = form.querySelector('select').value;
+            const cityState = form.querySelectorAll('input[type="text"]')[1].value;
+            const message = form.querySelector('textarea').value;
+            
+            // Create pre-filled email
+            const subject = `Service Inquiry: ${getServiceName(service)}`;
+            const body = `Name: ${fullName}%0D%0AEmail: ${email}%0D%0APhone: ${phone}%0D%0ACity/State: ${cityState}%0D%0AService: ${getServiceName(service)}%0D%0AMessage: ${message}`;
+            
+            // Open default email client
+            window.location.href = `mailto:ceo@servitixsolutions.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+            
+            // Reset form
+            form.reset();
+        }
+        
+        // Helper function to get service name
+        function getServiceName(serviceValue) {
+            const services = {
+                'duct': 'Duct Cleaning',
+                'carwash': 'Car Wash and Detailing',
+                'chimney': 'Chimney Cleaning'
+            };
+            return services[serviceValue] || 'General Inquiry';
+        }
+    </script>
+</body>
+</html>
