@@ -1105,11 +1105,12 @@
         }
     </style>
 </head>
-    <!-- ===== COOKIE CONSENT BANNER (with Decline) ===== -->
+    <!-- ===== COOKIE BANNER – GLASS, SLIDE-IN, WITH BUSINESSES HEADING ===== -->
 <div id="cookie-banner" class="cookie-banner">
   <div class="cookie-content">
+    <h3 class="cookie-heading">Businesses</h3>
     <p class="cookie-text">
-      🍪 We use cookies to improve your experience. By continuing, you agree to our 
+      We use cookies to improve your experience. By continuing, you agree to our 
       <a href="/privacy" class="cookie-link">Privacy Policy</a>.
     </p>
     <div class="cookie-actions">
@@ -1122,114 +1123,122 @@
 <style>
   .cookie-banner {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    max-width: 1200px;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    max-width: 700px;
     margin: 0 auto;
-    background: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border-radius: 16px;
-    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    padding: 28px 32px;
     z-index: 9999;
     font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    border: 1px solid #eaeef2;
+    color: #1e293b;
+    transform: translateY(100%);
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transition: opacity 0.3s, transform 0.3s;
-    display: flex;
-    justify-content: center;
-    transform: translateY(0);
-    opacity: 1;
   }
 
+  /* Hidden state – used after user makes a choice */
   .cookie-banner.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    pointer-events: none;
+    display: none;
+  }
+
+  @keyframes slideUp {
+    0% { transform: translateY(100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 
   .cookie-content {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 24px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cookie-heading {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
   }
 
   .cookie-text {
     margin: 0;
     font-size: 1rem;
-    color: #1f2937;
+    color: #1e293b;
     line-height: 1.5;
   }
 
   .cookie-link {
     color: #2563eb;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.2);
   }
 
   .cookie-link:hover {
-    text-decoration: underline;
+    border-bottom-color: #2563eb;
   }
 
   .cookie-actions {
     display: flex;
-    gap: 12px;
-    flex-shrink: 0;
+    gap: 16px;
+    margin-top: 8px;
+    flex-wrap: wrap;
   }
 
   .cookie-btn {
     border: none;
-    padding: 10px 28px;
-    border-radius: 40px;
-    font-size: 0.95rem;
+    padding: 12px 32px;
+    border-radius: 60px;
+    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s, border-color 0.2s;
-    white-space: nowrap;
+    transition: all 0.2s;
     border: 1px solid transparent;
+    background: white;
+    color: #0f172a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    flex: 0 1 auto;
   }
 
   .cookie-btn.accept {
-    background: #2563eb;
+    background: #0f172a;
     color: white;
+    border: 1px solid rgba(255,255,255,0.2);
   }
 
   .cookie-btn.accept:hover {
-    background: #1d4ed8;
+    background: #1e293b;
+    transform: scale(0.98);
   }
 
   .cookie-btn.decline {
-    background: white;
-    color: #4b5563;
-    border-color: #d1d5db;
+    background: transparent;
+    color: #334155;
+    border: 1px solid rgba(51, 65, 85, 0.3);
+    backdrop-filter: blur(4px);
   }
 
   .cookie-btn.decline:hover {
-    background: #f9fafb;
-    border-color: #9ca3af;
+    background: rgba(255,255,255,0.4);
+    border-color: #64748b;
   }
 
-  .cookie-btn:active {
-    transform: scale(0.97);
-  }
-
-  /* Mobile */
+  /* Mobile adjustments */
   @media (max-width: 640px) {
     .cookie-banner {
-      bottom: 16px;
       left: 16px;
       right: 16px;
-      padding: 20px;
-    }
-    .cookie-content {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
+      bottom: 16px;
+      padding: 24px;
     }
     .cookie-actions {
-      width: 100%;
       flex-direction: column;
     }
     .cookie-btn {
@@ -1251,11 +1260,7 @@
     function hideBanner() {
       const banner = getBanner();
       if (banner) {
-        banner.classList.add('hidden');
-        // Remove from DOM after animation
-        setTimeout(() => {
-          if (banner.parentNode) banner.remove();
-        }, 400);
+        banner.classList.add('hidden'); // instantly hidden, no visual flicker
       }
     }
 
@@ -1263,7 +1268,6 @@
       try {
         localStorage.setItem(STORAGE_KEY, value);
       } catch(e) {
-        console.warn('localStorage not available, using session fallback');
         sessionStorage.setItem(STORAGE_KEY, value);
       }
       hideBanner();
@@ -1271,30 +1275,25 @@
 
     function checkConsent() {
       try {
-        const consent = localStorage.getItem(STORAGE_KEY) || sessionStorage.getItem(STORAGE_KEY);
-        return consent !== null; // if any value (accepted/declined) is stored, banner stays hidden
+        return localStorage.getItem(STORAGE_KEY) !== null || sessionStorage.getItem(STORAGE_KEY) !== null;
       } catch(e) {
         return false;
       }
     }
 
-    // If consent already given (either choice), hide banner immediately
+    // If user already made a choice, never show the banner
     if (checkConsent()) {
       hideBanner();
     } else {
-      // Add event listeners to both buttons
+      // Add event listeners
       const acceptBtn = document.getElementById('accept-cookies');
       const declineBtn = document.getElementById('decline-cookies');
       
       if (acceptBtn) {
-        acceptBtn.addEventListener('click', function() {
-          setConsent('accepted');
-        });
+        acceptBtn.addEventListener('click', () => setConsent('accepted'));
       }
       if (declineBtn) {
-        declineBtn.addEventListener('click', function() {
-          setConsent('declined');
-        });
+        declineBtn.addEventListener('click', () => setConsent('declined'));
       }
     }
   })();
@@ -1685,6 +1684,7 @@
     </script>
 </body>
 </html>
+
 
 
 
