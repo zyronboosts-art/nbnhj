@@ -1106,19 +1106,19 @@
     </style>
 </head>
     <!-- ===== COOKIE BANNER – GLASS, SLIDE-IN, WITH BUSINESSES HEADING ===== -->
-<div id="cookie-banner" class="cookie-banner">
-  <div class="cookie-content">
+< id="cookie-banner" class="cookie-banner">
+  < class="cookie-content">
     <h3 class="cookie-heading">We value your privacy</h3>
     <p class="cookie-text">
       We use cookies to improve your experience. By continuing, you agree to our 
       <a href="/privacy" class="cookie-link">Privacy Policy</a>.
     </p>
-    <div class="cookie-actions">
+    < class="cookie-actions">
       <button id="accept-cookies" class="cookie-btn accept">Accept</button>
       <button id="decline-cookies" class="cookie-btn decline">Decline</button>
-    </div>
-  </div>
-</div>
+    </>
+  </>
+</>
 
 <style>
   .cookie-banner {
@@ -1302,16 +1302,16 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="nav-container">
+        < class="container">
+            < class="nav-container">
                 <a href="#home" class="logo-container">
-                    <div class="logo">
-                        <div class="logo-letter">S</div>
-                    </div>
-                    <div class="logo-text">Servitix <span>Solutions</span></div>
+                    < class="logo">
+                        < class="logo-letter">S</>
+                    </>
+                    < class="logo-text">Servitix <span>Solutions</span></>
                 </a>
                 
-                <div class="nav-actions">
+                < class="nav-actions">
                     <!-- Desktop Theme Toggle -->
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                         <i class="fas fa-moon"></i>
@@ -1335,12 +1335,12 @@
                         </ul>
                         <a href="#contact" class="btn">Get Started</a>
                     </nav>
-                </div>
-            </div>
-        </div>
+                </>
+            </>
+        </>
         
         <!-- Mobile Navigation Menu -->
-        <div class="mobile-nav" id="mobileNav">
+        < class="mobile-nav" id="mobileNav">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -1350,167 +1350,261 @@
             </ul>
             
             <!-- Mobile Theme Toggle -->
-            <div class="mobile-theme-toggle">
+            < class="mobile-theme-toggle">
                 <span>Dark Mode</span>
                 <label class="theme-switch">
                     <input type="checkbox" id="mobileThemeToggle">
                     <span class="slider"></span>
                 </label>
-            </div>
-        </div>
+            </>
+        </>
         
         <!-- Overlay for mobile menu -->
-        <div class="menu-overlay" id="menuOverlay"></div>
+        < class="menu-overlay" id="menuOverlay"></>
     </header>
 
     <!-- Hero Section with Video Background -->
     <section class="hero" id="home">
-        <div class="video-background">
+        < class="video-background">
             <video autoplay muted loop playsinline>
                 <source src="https://assets.mixkit.co/videos/preview/mixkit-white-circles-moving-in-digital-space-36554-large.mp4" type="video/mp4">
                 <!-- Fallback gradient if video doesn't load -->
-                <div style="width:100%;height:100%;background:var(--hero-overlay)"></div>
+                < style="width:100%;height:100%;background:var(--hero-overlay)"></>
             </video>
-        </div>
-        <div class="video-overlay"></div>
+        </>
+        < class="video-overlay"></>
         
-        <div class="container">
-            <div class="hero-content">
+        < class="container">
+            < class="hero-content">
                 <h1>Innovative <span>Web & AI Solutions</span> for Modern Businesses</h1>
                 <p>At Servitix Solutions, we craft cutting-edge websites and intelligent AI software that drive growth, enhance user experiences, and transform your digital presence.</p>
                 <a href="#contact" class="btn">Start Your Project</a>
-            </div>
-        </div>
+            </>
+        </>
     </section>
+                    <!-- ===== TRUSTED BY FOUNDERS – AUTO-SCROLLING MARQUEE ===== -->
+<section class="trusted-section">
+  <h2 class="trusted-heading">
+    Trusted by <span class="highlight">50+ founders</span>
+  </h2>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <!-- 6 unique founder images (randomuser.me) -->
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="founder" class="founder-img">
+      <!-- Duplicate set for seamless infinite scroll -->
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="founder" class="founder-img">
+      <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="founder" class="founder-img">
+    </div>
+  </div>
+</section>
+
+<style>
+  .trusted-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .trusted-heading {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 40px;
+  }
+
+  .highlight {
+    color: #2563eb;
+    background: linear-gradient(145deg, #dbeafe, #eff6ff);
+    padding: 0.1em 0.4em;
+    border-radius: 40px;
+  }
+
+  /* Marquee container – hides overflow + fade edges */
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 40px;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+  }
+
+  /* Founder images – round, uniform size */
+  .founder-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+
+  .founder-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+  }
+
+  /* Infinite scroll – moves exactly half (duplicate trick) */
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Mobile-friendly */
+  @media (max-width: 640px) {
+    .trusted-heading { font-size: 1.8rem; }
+    .founder-img { width: 60px; height: 60px; }
+    .marquee-track { gap: 25px; }
+  }
+</style>
+<!-- ===== END ===== -->
 
     <!-- Services Section -->
     <section class="services" id="services">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
+        < class="container">
+            < class="section-title animate-on-scroll">
                 <h2>Our Services</h2>
-            </div>
+            </>
             
-            <div class="services-grid">
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
+            < class="services-grid">
+                < class="service-card animate-on-scroll">
+                    < class="service-icon">
                         <i class="fas fa-code"></i>
-                    </div>
+                    </>
                     <h3>Website Development</h3>
                     <p>We build responsive, high-performance websites with modern technologies that work seamlessly across all devices and platforms.</p>
-                </div>
+                </>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
+                < class="service-card animate-on-scroll">
+                    < class="service-icon">
                         <i class="fas fa-laptop-code"></i>
-                    </div>
+                    </>
                     <h3>Custom Web Applications</h3>
                     <p>Tailored web applications designed to solve your unique business challenges with intuitive interfaces and robust functionality.</p>
-                </div>
+                </>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
+                < class="service-card animate-on-scroll">
+                    < class="service-icon">
                         <i class="fas fa-robot"></i>
-                    </div>
+                    </>
                     <h3>AI Software Development</h3>
                     <p>Intelligent AI solutions including machine learning models, natural language processing, and predictive analytics for data-driven decisions.</p>
-                </div>
+                </>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
+                < class="service-card animate-on-scroll">
+                    < class="service-icon">
                         <i class="fas fa-brain"></i>
-                    </div>
+                    </>
                     <h3>AI Integration</h3>
                     <p>Seamlessly integrate AI capabilities into your existing systems to automate processes and unlock valuable insights from your data.</p>
-                </div>
+                </>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
+                < class="service-card animate-on-scroll">
+                    < class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
-                    </div>
+                    </>
                     <h3>Mobile-First Design</h3>
                     <p>We prioritize mobile experience in all our projects, ensuring your website or application performs flawlessly on smartphones and tablets.</p>
-                </div>
+                </>
                 
-                <div class="service-card animate-on-scroll">
-                    <div class="service-icon">
+                < class="service-card animate-on-scroll">
+                    < class="service-icon">
                         <i class="fas fa-chart-line"></i>
-                    </div>
+                    </>
                     <h3>Digital Transformation</h3>
                     <p>Comprehensive strategies to modernize your digital infrastructure, streamline operations, and enhance customer engagement.</p>
-                </div>
-            </div>
-        </div>
+                </>
+            </>
+        </>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="container">
-            <div class="section-title animate-on-scroll">
+        < class="container">
+            < class="section-title animate-on-scroll">
                 <h2>About Servitix Solutions</h2>
-            </div>
+            </>
             
-            <div class="about-content">
-                <div class="about-text animate-on-scroll">
+            < class="about-content">
+                < class="about-text animate-on-scroll">
                     <h3>Driving Digital Innovation with Cutting-Edge Technology</h3>
                     <p>Servitix Solutions is a premier technology company specializing in website development and AI software solutions. With a team of expert developers, designers, and AI specialists, we help businesses leverage technology to achieve their goals.</p>
                     
                     <p>Our approach combines technical expertise with creative problem-solving to deliver solutions that are not only functional but also intuitive and scalable. We believe in building partnerships with our clients, working closely to understand their needs and exceed their expectations.</p>
                     
-                    <div class="about-features">
-                        <div class="feature animate-on-scroll">
+                    < class="about-features">
+                        < class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Industry-leading expertise</span>
-                        </div>
-                        <div class="feature animate-on-scroll">
+                        </>
+                        < class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Cutting-edge technology stack</span>
-                        </div>
-                        <div class="feature animate-on-scroll">
+                        </>
+                        < class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Mobile-first approach</span>
-                        </div>
-                        <div class="feature animate-on-scroll">
+                        </>
+                        < class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Agile development methodology</span>
-                        </div>
-                    </div>
-                </div>
+                        </>
+                    </>
+                </>
                 
-                <div class="about-visual animate-on-scroll">
-                    <div class="logo-large">
-                        <div class="logo-letter">S</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                < class="about-visual animate-on-scroll">
+                    < class="logo-large">
+                        < class="logo-letter">S</>
+                    </>
+                </>
+            </>
+        </>
     </section>
 
     <!-- CTA Section -->
     <section class="cta" id="contact">
-        <div class="container">
-            <div class="cta-content animate-on-scroll">
+        < class="container">
+            < class="cta-content animate-on-scroll">
                 <h2>Ready to Transform Your Digital Presence?</h2>
                 <p>Contact us today to discuss your project. Our team is ready to create a custom solution that meets your specific needs and helps your business thrive in the digital age.</p>
                 <a href="mailto:ceo@servitixsolutions.com" class="btn">Get In Touch</a>
-            </div>
-        </div>
+            </>
+        </>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-about">
+        < class="container">
+            < class="footer-content">
+                < class="footer-about">
                     <a href="#home" class="footer-logo">
-                        <div class="logo">
-                            <div class="logo-letter">S</div>
-                        </div>
-                        <div class="logo-text">Servitix <span>Solutions</span></div>
+                        < class="logo">
+                            < class="logo-letter">S</>
+                        </>
+                        < class="logo-text">Servitix <span>Solutions</span></>
                     </a>
                     <p>Leading provider of innovative web development and AI software solutions. We transform ideas into powerful digital experiences.</p>
-                </div>
+                </>
                 
-                <div class="footer-links">
+                < class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
@@ -1519,31 +1613,31 @@
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="#">Portfolio</a></li>
                     </ul>
-                </div>
+                </>
                 
-                <div class="footer-contact">
+                < class="footer-contact">
                     <h4>Contact Us</h4>
                     <p><i class="fas fa-map-marker-alt"></i> Washington D.C, USA</p>
                     <p><i class="fas fa-phone"></i> +1 (236) 606-5866</p>
                     <p><i class="fas fa-envelope"></i> ceo@servitixsolutions.com</p>
                     <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
-                </div>
+                </>
                 
-                <div class="footer-social">
+                < class="footer-social">
                     <h4>Follow Us</h4>
-                    <div style="display: flex; gap: 15px; margin-top: 15px;">
+                    < style="display: flex; gap: 15px; margin-top: 15px;">
                         <a href="https://www.facebook.com/servitixsolutions" aria-label="Facebook"><i class="fab fa-facebook-f" style="color: #3b82f6; font-size: 20px;"></i></a>
                         <a href="#" aria-label="Twitter"><i class="fab fa-twitter" style="color: #3b82f6; font-size: 20px;"></i></a>
                         <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" style="color: #3b82f6; font-size: 20px;"></i></a>
                         <a href="https://www.instagram.com/servitixsolutions?igsh=MTR5dWEya2ExOGRmMg%3D%3D&utm_source=qr" aria-label="Instagram"><i class="fab fa-instagram" style="color: #3b82f6; font-size: 20px;"></i></a>
-                    </div>
-                </div>
-            </div>
+                    </>
+                </>
+            </>
             
-            <div class="copyright">
+            < class="copyright">
                 <p>&copy; 2023 Servitix Solutions. All rights reserved.</p>
-            </div>
-        </div>
+            </>
+        </>
     </footer>
 
     <script>
@@ -1684,6 +1778,7 @@
     </script>
 </body>
 </html>
+
 
 
 
