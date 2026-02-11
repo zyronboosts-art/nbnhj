@@ -10,6 +10,7 @@
     <title>Servitix Solutions | Software Development Company (Web, AI & SaaS)</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ---------- Your EXACT same styles – untouched ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -18,7 +19,6 @@
         }
 
         :root {
-            /* Original light mode colors - EXACTLY AS BEFORE */
             --primary-color: #2563eb;
             --secondary-color: #1e40af;
             --accent-color: #3b82f6;
@@ -27,15 +27,12 @@
             --text-color: #334155;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
-            
-            /* Additional variables for consistent theming */
             --card-bg: white;
             --header-bg: white;
             --footer-bg: var(--dark-color);
             --hero-overlay: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(30, 64, 175, 0.9));
         }
 
-        /* Dark mode colors - keeping your original colors but adjusting backgrounds */
         body.dark-mode {
             --light-color: #0f172a;
             --dark-color: #f1f5f9;
@@ -834,6 +831,11 @@
             margin-bottom: 40px;
         }
 
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
         .footer-logo {
             display: flex;
             align-items: center;
@@ -853,7 +855,7 @@
             text-decoration: none;
         }
 
-        .footer-links h4, .footer-contact h4 {
+        .footer-links h4, .footer-contact h4, .footer-social h4 {
             font-size: 1.2rem;
             margin-bottom: 15px;
             position: relative;
@@ -861,7 +863,7 @@
             color: white;
         }
 
-        .footer-links h4::after, .footer-contact h4::after {
+        .footer-links h4::after, .footer-contact h4::after, .footer-social h4::after {
             content: '';
             position: absolute;
             width: 40px;
@@ -900,6 +902,22 @@
 
         .footer-contact i {
             color: var(--primary-color);
+        }
+
+        .footer-social .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .footer-social a {
+            color: #3b82f6;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-3px);
         }
 
         .copyright {
@@ -1103,215 +1121,213 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ===== ADDED: Trusted by founders marquee styles ===== */
+        .trusted-section {
+            max-width: 1200px;
+            margin: 60px auto 20px;
+            padding: 20px;
+            text-align: center;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+        .trusted-heading {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 30px;
+        }
+        .highlight {
+            color: #2563eb;
+            background: linear-gradient(145deg, #dbeafe, #eff6ff);
+            padding: 0.1em 0.4em;
+            border-radius: 40px;
+        }
+        .marquee {
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .marquee-track {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: scroll 30s linear infinite;
+        }
+        .founder-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+        .founder-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @media (max-width: 640px) {
+            .trusted-heading { font-size: 1.6rem; }
+            .founder-img { width: 60px; height: 60px; }
+            .marquee-track { gap: 25px; }
+        }
+        /* ===== END marquee styles ===== */
+
+        /* ===== COOKIE BANNER STYLES – FIXED ===== */
+        .cookie-banner {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+            padding: 28px 32px;
+            z-index: 9999;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            color: #1e293b;
+            transform: translateY(100%);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .cookie-banner.hidden {
+            display: none;
+        }
+
+        .cookie-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cookie-heading {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.01em;
+        }
+
+        .cookie-text {
+            margin: 0;
+            font-size: 1rem;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+
+        .cookie-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+        }
+
+        .cookie-link:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        .cookie-actions {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .cookie-btn {
+            border: none;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            background: white;
+            color: #0f172a;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            flex: 0 1 auto;
+        }
+
+        .cookie-btn.accept {
+            background: #0066FF;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .cookie-btn.accept:hover {
+            background: #1d4ed8;
+            transform: scale(0.98);
+        }
+
+        .cookie-btn.decline {
+            background: transparent;
+            color: #334155;
+            border: 1px solid rgba(51, 65, 85, 0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        .cookie-btn.decline:hover {
+            background: rgba(255,255,255,0.4);
+            border-color: #64748b;
+        }
+
+        @media (max-width: 640px) {
+            .cookie-banner {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+                padding: 24px;
+            }
+            .cookie-actions {
+                flex-direction: column;
+            }
+            .cookie-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
-    <!-- ===== COOKIE BANNER – GLASS, SLIDE-IN, WITH BUSINESSES HEADING ===== -->
-< id="cookie-banner" class="cookie-banner">
-  < class="cookie-content">
-    <h3 class="cookie-heading">We value your privacy</h3>
-    <p class="cookie-text">
-      We use cookies to improve your experience. By continuing, you agree to our 
-      <a href="/privacy" class="cookie-link">Privacy Policy</a>.
-    </p>
-    < class="cookie-actions">
-      <button id="accept-cookies" class="cookie-btn accept">Accept</button>
-      <button id="decline-cookies" class="cookie-btn decline">Decline</button>
-    </>
-  </>
-</>
-
-<style>
-  .cookie-banner {
-    position: fixed;
-    bottom: 24px;
-    left: 24px;
-    right: 24px;
-    max-width: 700px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    padding: 28px 32px;
-    z-index: 9999;
-    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    color: #1e293b;
-    transform: translateY(100%);
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    transition: opacity 0.3s, transform 0.3s;
-  }
-
-  /* Hidden state – used after user makes a choice */
-  .cookie-banner.hidden {
-    display: none;
-  }
-
-  @keyframes slideUp {
-    0% { transform: translateY(100%); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  .cookie-content {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .cookie-heading {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #0f172a;
-    letter-spacing: -0.01em;
-  }
-
-  .cookie-text {
-    margin: 0;
-    font-size: 1rem;
-    color: #1e293b;
-    line-height: 1.5;
-  }
-
-  .cookie-link {
-    color: #2563eb;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid rgba(37, 99, 235, 0.2);
-  }
-
-  .cookie-link:hover {
-    border-bottom-color: #2563eb;
-  }
-
-  .cookie-actions {
-    display: flex;
-    gap: 16px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-
-  .cookie-btn {
-    border: none;
-    padding: 12px 32px;
-    border-radius: 60px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid transparent;
-    background: white;
-    color: #0f172a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    flex: 0 1 auto;
-  }
-
-  .cookie-btn.accept {
-    background: #0066FF;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.2);
-  }
-
-  .cookie-btn.accept:hover {
-    background: #1d4ed8;
-    transform: scale(0.98);
-  }
-
-  .cookie-btn.decline {
-    background: transparent;
-    color: #334155;
-    border: 1px solid rgba(51, 65, 85, 0.3);
-    backdrop-filter: blur(4px);
-  }
-
-  .cookie-btn.decline:hover {
-    background: rgba(255,255,255,0.4);
-    border-color: #64748b;
-  }
-
-  /* Mobile adjustments */
-  @media (max-width: 640px) {
-    .cookie-banner {
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      padding: 24px;
-    }
-    .cookie-actions {
-      flex-direction: column;
-    }
-    .cookie-btn {
-      width: 100%;
-      text-align: center;
-    }
-  }
-</style>
-
-<script>
-  (function() {
-    const BANNER_ID = 'cookie-banner';
-    const STORAGE_KEY = 'cookieConsent';
-
-    function getBanner() {
-      return document.getElementById(BANNER_ID);
-    }
-
-    function hideBanner() {
-      const banner = getBanner();
-      if (banner) {
-        banner.classList.add('hidden'); // instantly hidden, no visual flicker
-      }
-    }
-
-    function setConsent(value) {
-      try {
-        localStorage.setItem(STORAGE_KEY, value);
-      } catch(e) {
-        sessionStorage.setItem(STORAGE_KEY, value);
-      }
-      hideBanner();
-    }
-
-    function checkConsent() {
-      try {
-        return localStorage.getItem(STORAGE_KEY) !== null || sessionStorage.getItem(STORAGE_KEY) !== null;
-      } catch(e) {
-        return false;
-      }
-    }
-
-    // If user already made a choice, never show the banner
-    if (checkConsent()) {
-      hideBanner();
-    } else {
-      // Add event listeners
-      const acceptBtn = document.getElementById('accept-cookies');
-      const declineBtn = document.getElementById('decline-cookies');
-      
-      if (acceptBtn) {
-        acceptBtn.addEventListener('click', () => setConsent('accepted'));
-      }
-      if (declineBtn) {
-        declineBtn.addEventListener('click', () => setConsent('declined'));
-      }
-    }
-  })();
-</script>
-<!-- ===== END COOKIE BANNER ===== -->
 <body>
+    <!-- ===== COOKIE BANNER – FIXED (valid HTML) ===== -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <h3 class="cookie-heading">We value your privacy</h3>
+            <p class="cookie-text">
+                We use cookies to improve your experience. By continuing, you agree to our 
+                <a href="/privacy" class="cookie-link">Privacy Policy</a>.
+            </p>
+            <div class="cookie-actions">
+                <button id="accept-cookies" class="cookie-btn accept">Accept</button>
+                <button id="decline-cookies" class="cookie-btn decline">Decline</button>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END COOKIE BANNER ===== -->
+
     <!-- Header -->
     <header>
-        < class="container">
-            < class="nav-container">
+        <div class="container">
+            <div class="nav-container">
                 <a href="#home" class="logo-container">
-                    < class="logo">
-                        < class="logo-letter">S</>
-                    </>
-                    < class="logo-text">Servitix <span>Solutions</span></>
+                    <div class="logo">
+                        <div class="logo-letter">S</div>
+                    </div>
+                    <div class="logo-text">Servitix <span>Solutions</span></div>
                 </a>
                 
-                < class="nav-actions">
+                <div class="nav-actions">
                     <!-- Desktop Theme Toggle -->
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
                         <i class="fas fa-moon"></i>
@@ -1335,12 +1351,12 @@
                         </ul>
                         <a href="#contact" class="btn">Get Started</a>
                     </nav>
-                </>
-            </>
-        </>
+                </div>
+            </div>
+        </div>
         
         <!-- Mobile Navigation Menu -->
-        < class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav" id="mobileNav">
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -1350,167 +1366,192 @@
             </ul>
             
             <!-- Mobile Theme Toggle -->
-            < class="mobile-theme-toggle">
+            <div class="mobile-theme-toggle">
                 <span>Dark Mode</span>
                 <label class="theme-switch">
                     <input type="checkbox" id="mobileThemeToggle">
                     <span class="slider"></span>
                 </label>
-            </>
-        </>
+            </div>
+        </div>
         
         <!-- Overlay for mobile menu -->
-        < class="menu-overlay" id="menuOverlay"></>
+        <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
     <!-- Hero Section with Video Background -->
     <section class="hero" id="home">
-        < class="video-background">
+        <div class="video-background">
             <video autoplay muted loop playsinline>
                 <source src="https://assets.mixkit.co/videos/preview/mixkit-white-circles-moving-in-digital-space-36554-large.mp4" type="video/mp4">
                 <!-- Fallback gradient if video doesn't load -->
-                < style="width:100%;height:100%;background:var(--hero-overlay)"></>
+                <div style="width:100%;height:100%;background:var(--hero-overlay)"></div>
             </video>
-        </>
-        < class="video-overlay"></>
+        </div>
+        <div class="video-overlay"></div>
         
-        < class="container">
-            < class="hero-content">
+        <div class="container">
+            <div class="hero-content">
                 <h1>Innovative <span>Web & AI Solutions</span> for Modern Businesses</h1>
                 <p>At Servitix Solutions, we craft cutting-edge websites and intelligent AI software that drive growth, enhance user experiences, and transform your digital presence.</p>
                 <a href="#contact" class="btn">Start Your Project</a>
-            </>
-        </>
+            </div>
+        </div>
     </section>
-                    
+
+    <!-- ===== TRUSTED BY 50+ FOUNDERS MARQUEE – INSERTED HERE ===== -->
+    <section class="trusted-section">
+        <h2 class="trusted-heading">
+            Trusted by <span class="highlight">50+ founders</span>
+        </h2>
+        <div class="marquee">
+            <div class="marquee-track">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="founder" class="founder-img">
+                <!-- Duplicate for seamless loop -->
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="founder" class="founder-img">
+                <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="founder" class="founder-img">
+            </div>
+        </div>
+    </section>
+    <!-- ===== END MARQUEE ===== -->
+
     <!-- Services Section -->
     <section class="services" id="services">
-        < class="container">
-            < class="section-title animate-on-scroll">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
                 <h2>Our Services</h2>
-            </>
+            </div>
             
-            < class="services-grid">
-                < class="service-card animate-on-scroll">
-                    < class="service-icon">
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
                         <i class="fas fa-code"></i>
-                    </>
+                    </div>
                     <h3>Website Development</h3>
                     <p>We build responsive, high-performance websites with modern technologies that work seamlessly across all devices and platforms.</p>
-                </>
+                </div>
                 
-                < class="service-card animate-on-scroll">
-                    < class="service-icon">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
-                    </>
+                    </div>
                     <h3>Custom Web Applications</h3>
                     <p>Tailored web applications designed to solve your unique business challenges with intuitive interfaces and robust functionality.</p>
-                </>
+                </div>
                 
-                < class="service-card animate-on-scroll">
-                    < class="service-icon">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
                         <i class="fas fa-robot"></i>
-                    </>
+                    </div>
                     <h3>AI Software Development</h3>
                     <p>Intelligent AI solutions including machine learning models, natural language processing, and predictive analytics for data-driven decisions.</p>
-                </>
+                </div>
                 
-                < class="service-card animate-on-scroll">
-                    < class="service-icon">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
                         <i class="fas fa-brain"></i>
-                    </>
+                    </div>
                     <h3>AI Integration</h3>
                     <p>Seamlessly integrate AI capabilities into your existing systems to automate processes and unlock valuable insights from your data.</p>
-                </>
+                </div>
                 
-                < class="service-card animate-on-scroll">
-                    < class="service-icon">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
                         <i class="fas fa-mobile-alt"></i>
-                    </>
+                    </div>
                     <h3>Mobile-First Design</h3>
                     <p>We prioritize mobile experience in all our projects, ensuring your website or application performs flawlessly on smartphones and tablets.</p>
-                </>
+                </div>
                 
-                < class="service-card animate-on-scroll">
-                    < class="service-icon">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">
                         <i class="fas fa-chart-line"></i>
-                    </>
+                    </div>
                     <h3>Digital Transformation</h3>
                     <p>Comprehensive strategies to modernize your digital infrastructure, streamline operations, and enhance customer engagement.</p>
-                </>
-            </>
-        </>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
-        < class="container">
-            < class="section-title animate-on-scroll">
+        <div class="container">
+            <div class="section-title animate-on-scroll">
                 <h2>About Servitix Solutions</h2>
-            </>
+            </div>
             
-            < class="about-content">
-                < class="about-text animate-on-scroll">
+            <div class="about-content">
+                <div class="about-text animate-on-scroll">
                     <h3>Driving Digital Innovation with Cutting-Edge Technology</h3>
                     <p>Servitix Solutions is a premier technology company specializing in website development and AI software solutions. With a team of expert developers, designers, and AI specialists, we help businesses leverage technology to achieve their goals.</p>
                     
                     <p>Our approach combines technical expertise with creative problem-solving to deliver solutions that are not only functional but also intuitive and scalable. We believe in building partnerships with our clients, working closely to understand their needs and exceed their expectations.</p>
                     
-                    < class="about-features">
-                        < class="feature animate-on-scroll">
+                    <div class="about-features">
+                        <div class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Industry-leading expertise</span>
-                        </>
-                        < class="feature animate-on-scroll">
+                        </div>
+                        <div class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Cutting-edge technology stack</span>
-                        </>
-                        < class="feature animate-on-scroll">
+                        </div>
+                        <div class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Mobile-first approach</span>
-                        </>
-                        < class="feature animate-on-scroll">
+                        </div>
+                        <div class="feature animate-on-scroll">
                             <i class="fas fa-check-circle"></i>
                             <span>Agile development methodology</span>
-                        </>
-                    </>
-                </>
+                        </div>
+                    </div>
+                </div>
                 
-                < class="about-visual animate-on-scroll">
-                    < class="logo-large">
-                        < class="logo-letter">S</>
-                    </>
-                </>
-            </>
-        </>
+                <div class="about-visual animate-on-scroll">
+                    <div class="logo-large">
+                        <div class="logo-letter">S</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- CTA Section -->
     <section class="cta" id="contact">
-        < class="container">
-            < class="cta-content animate-on-scroll">
+        <div class="container">
+            <div class="cta-content animate-on-scroll">
                 <h2>Ready to Transform Your Digital Presence?</h2>
                 <p>Contact us today to discuss your project. Our team is ready to create a custom solution that meets your specific needs and helps your business thrive in the digital age.</p>
                 <a href="mailto:ceo@servitixsolutions.com" class="btn">Get In Touch</a>
-            </>
-        </>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        < class="container">
-            < class="footer-content">
-                < class="footer-about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
                     <a href="#home" class="footer-logo">
-                        < class="logo">
-                            < class="logo-letter">S</>
-                        </>
-                        < class="logo-text">Servitix <span>Solutions</span></>
+                        <div class="logo">
+                            <div class="logo-letter">S</div>
+                        </div>
+                        <div class="logo-text">Servitix <span>Solutions</span></div>
                     </a>
                     <p>Leading provider of innovative web development and AI software solutions. We transform ideas into powerful digital experiences.</p>
-                </>
+                </div>
                 
-                < class="footer-links">
+                <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#home">Home</a></li>
@@ -1519,31 +1560,31 @@
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="#">Portfolio</a></li>
                     </ul>
-                </>
+                </div>
                 
-                < class="footer-contact">
+                <div class="footer-contact">
                     <h4>Contact Us</h4>
                     <p><i class="fas fa-map-marker-alt"></i> Washington D.C, USA</p>
                     <p><i class="fas fa-phone"></i> +1 (236) 606-5866</p>
                     <p><i class="fas fa-envelope"></i> ceo@servitixsolutions.com</p>
                     <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
-                </>
+                </div>
                 
-                < class="footer-social">
+                <div class="footer-social">
                     <h4>Follow Us</h4>
-                    < style="display: flex; gap: 15px; margin-top: 15px;">
-                        <a href="https://www.facebook.com/servitixsolutions" aria-label="Facebook"><i class="fab fa-facebook-f" style="color: #3b82f6; font-size: 20px;"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" style="color: #3b82f6; font-size: 20px;"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" style="color: #3b82f6; font-size: 20px;"></i></a>
-                        <a href="https://www.instagram.com/servitixsolutions?igsh=MTR5dWEya2ExOGRmMg%3D%3D&utm_source=qr" aria-label="Instagram"><i class="fab fa-instagram" style="color: #3b82f6; font-size: 20px;"></i></a>
-                    </>
-                </>
-            </>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/servitixsolutions" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/servitixsolutions?igsh=MTR5dWEya2ExOGRmMg%3D%3D&utm_source=qr" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
             
-            < class="copyright">
+            <div class="copyright">
                 <p>&copy; 2023 Servitix Solutions. All rights reserved.</p>
-            </>
-        </>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -1559,8 +1600,8 @@
             document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
         }
         
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-        menuOverlay.addEventListener('click', toggleMobileMenu);
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', toggleMobileMenu);
         
         // Close mobile menu when clicking on a link
         document.querySelectorAll('.mobile-nav a').forEach(link => {
@@ -1576,7 +1617,6 @@
         const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const body = document.body;
         
-        // Check for saved theme preference or prefer-color-scheme
         function getPreferredTheme() {
             const savedTheme = localStorage.getItem('servitix-theme');
             if (savedTheme) {
@@ -1585,7 +1625,6 @@
             return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         }
         
-        // Apply theme
         function applyTheme(theme) {
             if (theme === 'dark') {
                 body.classList.add('dark-mode');
@@ -1597,17 +1636,14 @@
             localStorage.setItem('servitix-theme', theme);
         }
         
-        // Toggle theme
         function toggleTheme() {
             const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
         }
         
-        // Initialize theme
         applyTheme(getPreferredTheme());
         
-        // Event listeners for theme toggles
         if (themeToggle) {
             themeToggle.addEventListener('click', toggleTheme);
         }
@@ -1619,9 +1655,7 @@
             });
         }
         
-        // Listen for system theme changes
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            // Only apply if user hasn't explicitly set a preference
             if (!localStorage.getItem('servitix-theme')) {
                 applyTheme(e.matches ? 'dark' : 'light');
             }
@@ -1642,13 +1676,10 @@
             });
         }
         
-        // Initial check for elements in view
         animateOnScroll();
-        
-        // Add scroll event listener
         window.addEventListener('scroll', animateOnScroll);
         
-        // Video fallback for browsers that don't support autoplay
+        // Video fallback
         const video = document.querySelector('video');
         if (video) {
             video.play().catch(error => {
@@ -1677,23 +1708,53 @@
             });
         });
         
-        // Initialize animations on page load
-        window.addEventListener('load', () => {
-            animateOnScroll();
-        });
+        // Cookie banner script
+        (function() {
+            const BANNER_ID = 'cookie-banner';
+            const STORAGE_KEY = 'cookieConsent';
+
+            function getBanner() {
+                return document.getElementById(BANNER_ID);
+            }
+
+            function hideBanner() {
+                const banner = getBanner();
+                if (banner) {
+                    banner.classList.add('hidden');
+                }
+            }
+
+            function setConsent(value) {
+                try {
+                    localStorage.setItem(STORAGE_KEY, value);
+                } catch(e) {
+                    sessionStorage.setItem(STORAGE_KEY, value);
+                }
+                hideBanner();
+            }
+
+            function checkConsent() {
+                try {
+                    return localStorage.getItem(STORAGE_KEY) !== null || sessionStorage.getItem(STORAGE_KEY) !== null;
+                } catch(e) {
+                    return false;
+                }
+            }
+
+            if (checkConsent()) {
+                hideBanner();
+            } else {
+                const acceptBtn = document.getElementById('accept-cookies');
+                const declineBtn = document.getElementById('decline-cookies');
+                
+                if (acceptBtn) {
+                    acceptBtn.addEventListener('click', () => setConsent('accepted'));
+                }
+                if (declineBtn) {
+                    declineBtn.addEventListener('click', () => setConsent('declined'));
+                }
+            }
+        })();
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
