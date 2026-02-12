@@ -1167,6 +1167,15 @@
             transform: scale(1.05);
             box-shadow: 0 12px 28px rgba(0,0,0,0.1);
         }
+        /* Dark mode fix for Trusted by founders section */
+body.dark-mode .trusted-heading {
+    color: #ffffff;
+}
+body.dark-mode .highlight {
+    background: rgba(37, 99, 235, 0.25);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -1758,3 +1767,4 @@
     </script>
 </body>
 </html>
+
