@@ -1309,22 +1309,17 @@ body.dark-mode .highlight {
     </style>
 </head>
 <body>
-    <!-- ===== COOKIE BANNER – FIXED (valid HTML) ===== -->
-    <div id="cookie-banner" class="cookie-banner">
-        <div class="cookie-content">
-            <h3 class="cookie-heading">We value your privacy</h3>
-            <p class="cookie-text">
-                We use cookies to improve your experience. By continuing, you agree to our 
-                <a href="/privacy" class="cookie-link">Privacy Policy</a>.
-            </p>
-            <div class="cookie-actions">
-                <button id="accept-cookies" class="cookie-btn accept">Accept</button>
-                <button id="decline-cookies" class="cookie-btn decline">Decline</button>
-            </div>
-        </div>
-    </div>
-    <!-- ===== END COOKIE BANNER ===== -->
-
+    <!-- Cookie Consent Banner -->
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-content">
+    <i class="fas fa-cookie-bite"></i>
+    <p>We use cookies to enhance your experience. By continuing, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-btn accept" id="acceptCookies">Accept</button>
+    <button class="cookie-btn decline" id="declineCookies">Decline</button>
+  </div>
+</div>
     <!-- Header -->
     <header>
         <div class="container">
@@ -1767,4 +1762,5 @@ body.dark-mode .highlight {
     </script>
 </body>
 </html>
+
 
