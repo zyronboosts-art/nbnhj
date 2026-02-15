@@ -1765,56 +1765,42 @@ body.dark-mode .cookie-btn.decline:hover {
             });
         });
         
-        // Cookie banner script
-        (function() {
-            const BANNER_ID = 'cookie-banner';
-            const STORAGE_KEY = 'cookieConsent';
+// ===== COOKIE BANNER HANDLING =====
+const cookieBanner = document.getElementById('cookieBanner');
+const acceptBtn = document.getElementById('acceptCookies');
+const declineBtn = document.getElementById('declineCookies');
 
-            function getBanner() {
-                return document.getElementById(BANNER_ID);
-            }
+// Check if user already made a choice
+if (!localStorage.getItem('servitix-cookies-accepted')) {
+  cookieBanner.style.display = 'flex'; // show banner
+} else {
+  cookieBanner.style.display = 'none';
+}
 
-            function hideBanner() {
-                const banner = getBanner();
-                if (banner) {
-                    banner.classList.add('hidden');
-                }
-            }
+// Accept action
+acceptBtn.addEventListener('click', () => {
+  localStorage.setItem('servitix-cookies-accepted', 'true');
+  cookieBanner.classList.add('hide');
+  setTimeout(() => {
+    cookieBanner.style.display = 'none';
+  }, 500); // match animation duration
+});
 
-            function setConsent(value) {
-                try {
-                    localStorage.setItem(STORAGE_KEY, value);
-                } catch(e) {
-                    sessionStorage.setItem(STORAGE_KEY, value);
-                }
-                hideBanner();
-            }
+// Decline action (optional: you can still store a flag to not show again)
+declineBtn.addEventListener('click', () => {
+  localStorage.setItem('servitix-cookies-accepted', 'false'); // or just hide
+  cookieBanner.classList.add('hide');
+  setTimeout(() => {
+    cookieBanner.style.display = 'none';
+  }, 500);
+});
 
-            function checkConsent() {
-                try {
-                    return localStorage.getItem(STORAGE_KEY) !== null || sessionStorage.getItem(STORAGE_KEY) !== null;
-                } catch(e) {
-                    return false;
-                }
-            }
-
-            if (checkConsent()) {
-                hideBanner();
-            } else {
-                const acceptBtn = document.getElementById('accept-cookies');
-                const declineBtn = document.getElementById('decline-cookies');
-                
-                if (acceptBtn) {
-                    acceptBtn.addEventListener('click', () => setConsent('accepted'));
-                }
-                if (declineBtn) {
-                    declineBtn.addEventListener('click', () => setConsent('declined'));
-                }
-            }
-        })();
+// If you want to show banner again for testing, you can clear localStorage
+// localStorage.removeItem('servitix-cookies-accepted');
     </script>
 </body>
 </html>
+
 
 
 
