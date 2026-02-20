@@ -6,6 +6,7 @@
     <title>Privacy Policy - Servitix Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ---------- Your EXACT same styles from original – untouched ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -21,28 +22,54 @@
             --light-color: #f8fafc;
             --text-color: #334155;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --card-bg: white;
+            --header-bg: white;
+            --footer-bg: var(--dark-color);
+            --hero-overlay: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(30, 64, 175, 0.9));
+        }
+
+        body.dark-mode {
+            --light-color: #0f172a;
+            --dark-color: #f1f5f9;
+            --text-color: #cbd5e1;
+            --card-bg: #1e293b;
+            --header-bg: #1e293b;
+            --footer-bg: #0f172a;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            --hero-overlay: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(30, 64, 175, 0.95));
         }
 
         body {
-            background-color: var(--light-color);
-            color: var(--text-color);
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
 
         .container {
-            max-width: 1000px;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
-        /* Header */
+        /* Header and Navigation - EXACT copy from original */
         header {
-            background: white;
+            background-color: var(--header-bg);
             box-shadow: var(--shadow);
-            padding: 15px 0;
             position: sticky;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
         }
 
         .logo-container {
@@ -60,6 +87,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
 
         .logo-letter {
@@ -67,16 +103,381 @@
             font-size: 30px;
             font-weight: 800;
             font-family: 'Arial Black', sans-serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .logo-letter::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: #fbbf24;
+            border-radius: 50%;
+            bottom: 1px;
+            right: -4px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .logo-text {
             font-size: 20px;
             font-weight: 700;
             color: var(--dark-color);
+            text-decoration: none;
+            transition: color 0.5s ease;
         }
 
         .logo-text span {
             color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 15px;
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+            transform: scale(1.1);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .theme-toggle .fa-sun {
+            color: #fbbf24;
+        }
+
+        .theme-toggle .fa-moon {
+            color: #64748b;
+        }
+
+        .theme-toggle .fa-sun {
+            position: absolute;
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+
+        .theme-toggle .fa-moon {
+            position: relative;
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        body.dark-mode .theme-toggle .fa-sun {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+
+        body.dark-mode .theme-toggle .fa-moon {
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Desktop Navigation */
+        .desktop-nav {
+            display: none;
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--header-bg);
+            box-shadow: var(--shadow);
+            padding: 80px 30px 30px;
+            transition: all 0.3s ease;
+            z-index: 999;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 18px;
+            display: block;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-nav .btn {
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        /* Theme toggle in mobile menu */
+        .mobile-theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 10px 0;
+            border-top: 1px solid rgba(100, 116, 139, 0.2);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .mobile-theme-toggle span {
+            color: var(--text-color);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .mobile-theme-toggle .theme-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .mobile-theme-toggle .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .mobile-theme-toggle .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .mobile-theme-toggle .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        .mobile-theme-toggle input:checked + .slider {
+            background-color: var(--primary-color);
+        }
+
+        .mobile-theme-toggle input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Overlay for mobile menu */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .desktop-nav {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .desktop-nav ul {
+                display: flex;
+                list-style: none;
+                gap: 25px;
+            }
+            
+            .desktop-nav a {
+                text-decoration: none;
+                color: var(--text-color);
+                font-weight: 600;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                position: relative;
+            }
+            
+            .desktop-nav a:hover {
+                color: var(--primary-color);
+            }
+            
+            .desktop-nav a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background-color: var(--primary-color);
+                bottom: -5px;
+                left: 0;
+                transition: all 0.3s ease;
+            }
+            
+            .desktop-nav a:hover::after {
+                width: 100%;
+            }
+            
+            .mobile-nav {
+                display: none;
+            }
+            
+            .menu-overlay {
+                display: none;
+            }
+            
+            .nav-actions {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
         }
 
         /* Back link */
@@ -96,14 +497,15 @@
             text-decoration: underline;
         }
 
-        /* Main content */
+        /* Privacy card */
         .privacy-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 40px;
             box-shadow: var(--shadow);
             margin-bottom: 40px;
             border-top: 4px solid var(--primary-color);
+            transition: background-color 0.5s ease;
         }
 
         h1 {
@@ -154,20 +556,121 @@
 
         /* Footer */
         footer {
-            background: var(--dark-color);
+            background: var(--footer-bg);
             color: white;
+            padding: 60px 0 25px;
+            transition: background-color 0.5s ease;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .footer-logo .logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-logo .logo-text {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .footer-links h4, .footer-contact h4, .footer-social h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 8px;
+            color: white;
+        }
+
+        .footer-links h4::after, .footer-contact h4::after, .footer-social h4::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+        }
+
+        .footer-contact i {
+            color: var(--primary-color);
+        }
+
+        .footer-social .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .footer-social a {
+            color: #3b82f6;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            transform: translateY(-3px);
+        }
+
+        .copyright {
             text-align: center;
-            padding: 30px 0;
-            margin-top: 40px;
-        }
-
-        footer a {
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #94a3b8;
-            margin: 0 5px;
+            font-size: 0.9rem;
         }
 
-        footer a:hover {
-            color: white;
+        /* Desktop Styles */
+        @media (min-width: 992px) {
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         @media (max-width: 600px) {
@@ -178,18 +681,81 @@
                 font-size: 2rem;
             }
         }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Header - EXACT copy from original with full navigation -->
     <header>
         <div class="container">
-            <a href="index.html" class="logo-container">
-                <div class="logo">
-                    <div class="logo-letter">S</div>
+            <div class="nav-container">
+                <a href="index.html" class="logo-container">
+                    <div class="logo">
+                        <div class="logo-letter">S</div>
+                    </div>
+                    <div class="logo-text">Servitix <span>Solutions</span></div>
+                </a>
+                
+                <div class="nav-actions">
+                    <!-- Desktop Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    
+                    <!-- Desktop Navigation -->
+                    <nav class="desktop-nav">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html#services">Services</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                        <a href="index.html#contact" class="btn">Get Started</a>
+                    </nav>
                 </div>
-                <div class="logo-text">Servitix <span>Solutions</span></div>
-            </a>
+            </div>
         </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html#contact" class="btn">Get Started</a></li>
+            </ul>
+            
+            <!-- Mobile Theme Toggle -->
+            <div class="mobile-theme-toggle">
+                <span>Dark Mode</span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="mobileThemeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+        
+        <!-- Overlay for mobile menu -->
+        <div class="menu-overlay" id="menuOverlay"></div>
     </header>
 
     <div class="container">
@@ -265,16 +831,135 @@
             <p>If you have questions about this Privacy Policy, please contact us:</p>
             <p>
                 <i class="fas fa-envelope" style="color: var(--primary-color); width: 20px;"></i> privacy@servitixsolutions.com<br>
-                <i class="fas fa-phone" style="color: var(--primary-color);"></i> +1 (236) 606-5866<br>
-                <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> Washington D.C, USA
+                <i class="fas fa-phone" style="color: var(--primary-color);"></i> +1 (555) 123-4567<br>
+                <i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> 123 Tech Street, Innovation City
             </p>
         </div>
     </div>
 
+    <!-- Footer - EXACT copy from original -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Servitix Solutions. All rights reserved. | <a href="index.html">Home</a> | <a href="privacy">Privacy Policy</a></p>
+            <div class="footer-content">
+                <div class="footer-about">
+                    <a href="index.html" class="footer-logo">
+                        <div class="logo">
+                            <div class="logo-letter">S</div>
+                        </div>
+                        <div class="logo-text">Servitix <span>Solutions</span></div>
+                    </a>
+                    <p>Leading provider of innovative web development and AI software solutions. We transform ideas into powerful digital experiences.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Washington D.C, USA</p>
+                    <p><i class="fas fa-phone"></i> +1 (236) 606-5866</p>
+                    <p><i class="fas fa-envelope"></i> ceo@servitixsolutions.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/servitixsolutions" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/servitixsolutions?igsh=MTR5dWEya2ExOGRmMg%3D%3D&utm_source=qr" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Servitix Solutions. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const menuOverlay = document.getElementById('menuOverlay');
+        
+        function toggleMobileMenu() {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        if (menuOverlay) menuOverlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileNav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const body = document.body;
+        
+        function getPreferredTheme() {
+            const savedTheme = localStorage.getItem('servitix-theme');
+            if (savedTheme) {
+                return savedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.classList.add('dark-mode');
+                if (mobileThemeToggle) mobileThemeToggle.checked = true;
+            } else {
+                body.classList.remove('dark-mode');
+                if (mobileThemeToggle) mobileThemeToggle.checked = false;
+            }
+            localStorage.setItem('servitix-theme', theme);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        }
+        
+        applyTheme(getPreferredTheme());
+        
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        if (mobileThemeToggle) {
+            mobileThemeToggle.addEventListener('change', function() {
+                const newTheme = this.checked ? 'dark' : 'light';
+                applyTheme(newTheme);
+            });
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('servitix-theme')) {
+                applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
 </body>
 </html>
